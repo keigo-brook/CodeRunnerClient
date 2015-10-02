@@ -76,7 +76,7 @@ class GameApisController < ApplicationController
         send_url += '&' + p.param + '=' + params[p.param]
         response_text = Net::HTTP.get(URI.parse(URI.escape(send_url)))
         @response = {name: p.param, send_param: params[p.param], response: response_text}
-        unless @response[:response_text].include?('Error')
+        unless @response[:response].include?('Error')
           result_params = {
               parameter_id: Parameter.find_by_param(p.param).id,
               send_param: @response[:send_param],
