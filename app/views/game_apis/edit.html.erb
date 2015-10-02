@@ -1,0 +1,5 @@
+<h1>Editing Game Api</h1>
+<%= form_for([:games, @game_api], url: {action: 'update'}) do |f| %>
+    <%= render 'form', f: f %>
+<% end %><%= link_to 'Show', game_game_api_path(game_id: @game.id, id: @game_api.id) %> |
+<%= link_to 'Back', game_game_apis_path(game_id: @game.id) %>

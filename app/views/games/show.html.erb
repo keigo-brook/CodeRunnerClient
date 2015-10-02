@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+<div class="container">
+  <div class="row">
+    <ul>
+      <% @game.game_apis.each do |api| %>
+          <%= link_to game_game_api_path(game_id: @game.id, id: api.id) do %>
+              <li>
+                <p><%= api.name %> <%= api.end_point %></p>
+              </li>
+          <% end %>
+      <% end %>
+    </ul>
+  </div>
+  <div class="row">
+    <%= link_to 'APIを追加', new_game_game_api_path(game_id: @game.id) %>
+  </div>
+</div>
+<%= link_to 'Edit', edit_game_path(@game) %> |
+<%= link_to 'ゲーム一覧に戻る', games_path %>

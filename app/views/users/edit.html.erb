@@ -1,0 +1,17 @@
+<h1>Editing User</h1>
+<%= form_for(@user) do |f| %>
+    <div class="form-control">
+      <%= f.label :token %>
+      <%= f.text_field :token %>
+    </div>
+    <div class="form-control">
+      <%= f.label :name %>
+      <%= f.text_field :name %>
+    </div>
+    <div class="actions">
+      <%= f.submit %>
+    </div>
+<% end %>
+
+<%= link_to 'Show', @user %> |
+<%= link_to 'Back', users_path %>

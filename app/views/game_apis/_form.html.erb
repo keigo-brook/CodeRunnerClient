@@ -1,0 +1,34 @@
+<% if @game_api.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@game_api.errors.count, "error") %> prohibited this game_api from being saved:</h2>
+
+      <ul>
+        <% @game_api.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+<% end %>
+<div class="form-control">
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+</div>
+<div class="form-control">
+  <%= f.label :end_point %>
+  <span><%= @game.base_url %></span>
+  <%= f.text_field :end_point %>
+</div>
+<h3>追加したいパラメータを以下に入力してください。<br>*Tokenパラメータは自動的に作成されるので入力する必要はありません。</h3>
+<%= link_to_add_association 'パラメータ追加', f, :parameters,
+                            data: {
+                                             association_insertion_node: '.parameter_fields',
+                                             association_insertion_method: 'append' } %>
+<div class="parameter_fields">
+  <%= f.fields_for :parameters do |p| %>
+      <%= render 'parameter_fields', f: p %>
+  <% end %>
+</div>
+
+<div class="actions">
+  <%= f.submit %>
+</div>

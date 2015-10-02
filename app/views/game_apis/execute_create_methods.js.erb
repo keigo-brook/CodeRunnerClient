@@ -1,0 +1,4 @@
+<% @result.each do |r| %>
+$("#" + "<%= r[:name] %>").val("<%= r[:value] %>");
+document.getElementById('send-params').click();
+<% end %>

@@ -1,0 +1,45 @@
+<p id="notice"><%= notice %></p>
+<div class="container">
+  <div class="row">
+    <h2><%= @game_api.name %></h2>
+    <h3>End Point: <%= @game_api.end_point %></h3>
+    <h2>パラメータ一覧</h2>
+    <ul>
+      <% @game_api.parameters.each do |p| %>
+        <li>
+          <%= p.name %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>
+<h2>APIを叩く</h2>
+<div>
+  <h3>作成したメソッドを実行</h3>
+  <div class="row">
+    <%= link_to '実行', execute_create_methods_game_game_apis_path(game_id: @game.id), remote: true, id: 'execute-method' %>
+    <a href="#" id="send-per-second">一秒ごとに実行</a>
+    <a href="#" id="stop-send">停止</a>
+  </div>
+  <%= form_tag({action: :send_params}, remote: true) do %>
+    <% @game_api.parameters.each do |p| %>
+      <div>
+        <%= label_tag p.param, p.name %>
+        <% if p.name == 'token' %>
+          <%= text_field_tag p.param, current_user.token %>
+        <% else %>
+          <%= text_field_tag p.param %>
+        <% end %>
+      </div>
+    <% end %>
+    <%= submit_tag '送信', id: 'send-params' %>
+  <% end %>
+</div>
+<div>
+  <h2>結果</h2>
+  <div class="result">
+
+  </div>
+</div>
+<%= link_to 'Edit', edit_game_game_api_path(game_id: @game.id, id: @game_api.id) %> |
+<%= link_to 'API一覧に戻る', game_game_apis_path(game_id: @game.id) %>
