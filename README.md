@@ -1,5 +1,5 @@
 ## Code Runner Client
-https://coderunner.jpに参加するとき用のクライアントアプリケーションです。
+https://coderunner.jp に参加するとき用のクライアントアプリケーションです。
 
 ### 使用上の注意
 現在、実行ボタンを押すとgame_apis_controllerのexecute_create_methodsで指定したメソッドを実行します。
