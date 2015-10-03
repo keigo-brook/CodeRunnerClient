@@ -1,45 +1,103 @@
 <p id="notice"><%= notice %></p>
 <div class="container">
   <div class="row">
-    <h2><%= @game_api.name %></h2>
-    <h3>End Point: <%= @game_api.end_point %></h3>
-    <h2>パラメータ一覧</h2>
-    <ul>
+    <h2 class="header"><%= @game_api.name %></h2>
+
+    <blockquote><h5>End Point: <%= @game_api.end_point %></h5></blockquote>
+
+    <ul class="collection with-header">
+      <li class="collection-header"><h4>パラメータ一覧</h4></li>
       <% @game_api.parameters.each do |p| %>
-        <li>
-          <%= p.name %>
-        </li>
+          <li class="collection-item">
+            <%= p.name %>
+          </li>
       <% end %>
     </ul>
   </div>
-</div>
-<h2>APIを叩く</h2>
-<div>
-  <h3>作成したメソッドを実行</h3>
-  <div class="row">
-    <%= link_to '実行', execute_create_methods_game_game_apis_path(game_id: @game.id), remote: true, id: 'execute-method' %>
-    <a href="#" id="send-per-second">一秒ごとに実行</a>
-    <a href="#" id="stop-send">停止</a>
-  </div>
-  <%= form_tag({action: :send_params}, remote: true) do %>
-    <% @game_api.parameters.each do |p| %>
-      <div>
-        <%= label_tag p.param, p.name %>
-        <% if p.name == 'token' %>
-          <%= text_field_tag p.param, current_user.token %>
-        <% else %>
-          <%= text_field_tag p.param %>
-        <% end %>
-      </div>
-    <% end %>
-    <%= submit_tag '送信', id: 'send-params' %>
-  <% end %>
-</div>
-<div>
-  <h2>結果</h2>
-  <div class="result">
+  <h3>APIを叩く</h3>
 
+  <div>
+    <p class="caption">
+      実行ボタンを押すと、指定したメソッドを実行して送信します。<br>
+      1秒毎に実行ボタンは、それを1秒毎にやります。<br>
+      停止するには停止ボタンを押してください。
+    </p>
+
+    <div class="row">
+      <%= link_to '実行', execute_create_methods_game_game_apis_path(game_id: @game.id),
+                  remote: true,
+                  id: 'execute-method', class: 'btn waves-effect waves-light' %>
+      <a href="#" id="send-per-second" class="blue btn waves-effect waves-light">一秒ごとに実行</a>
+      <a href="#" id="stop-send" class="red btn waves-effect waves-light">停止</a>
+    </div>
+    <%= form_tag({action: :send_params}, remote: true) do %>
+        <% @game_api.parameters.each do |p| %>
+            <div>
+              <%= label_tag p.param, p.name %>
+              <% if p.name == 'token' %>
+                  <%= text_field_tag p.param, current_user.token %>
+              <% else %>
+                  <%= text_field_tag p.param %>
+              <% end %>
+            </div>
+        <% end %>
+        <%= button_tag type: 'submit', id: 'send-params', class: 'btn waves-effect waves-light' do %>
+            送信
+            <i class="material-icons right">send</i>
+        <% end %>
+    <% end %>
+  </div>
+  <div>
+    <h4>結果</h4>
+
+    <div class="row">
+      <div class="col s12">
+        <ul class="tabs">
+          <li class="tab col s3"><a href="#test1">すべてのデータ</a></li>
+          <li class="tab col s3"><a class="active" href="#test2">今回のデータ</a></li>
+          <li class="tab col s3"><a href="#test3">エラーデータ</a></li>
+        </ul>
+      </div>
+      <div id="test1" class="col s12" style="height: 500px; overflow-y: scroll">
+        <table class="striped">
+          <thead>
+          <tr>
+            <th data-field="id">パラメータ名</th>
+            <th data-field="name">送信値</th>
+            <th data-field="price">レスポンス</th>
+          </tr>
+          </thead>
+
+          <tbody class="result-tbody all-result">
+          <% @all_results.each do |result| %>
+              <tr class="tr-all-results">
+                <td><%= result.parameter.name %></td>
+                <td><%= result.send_param %></td>
+                <td><%= result.response %></td>
+              </tr>
+          <% end %>
+          </tbody>
+        </table>
+      </div>
+      <div id="test2" class="col s12" style="height: 500px; overflow-y: scroll;">
+        <table class="striped">
+          <thead>
+          <tr class="tr-current-results">
+            <th data-field="id">パラメータ名</th>
+            <th data-field="name">送信値</th>
+            <th data-field="price">レスポンス</th>
+          </tr>
+          </thead>
+
+          <tbody class="result-tbody current-result">
+          </tbody>
+        </table>
+      </div>
+      <div id="test3" class="col s12">Test 3</div>
+    </div>
+  </div>
+  <div class="row">
+    <%= link_to 'Edit', edit_game_game_api_path(game_id: @game.id, id: @game_api.id), class: 'btn waves-effect waves-light' %>
+    <%= link_to 'API一覧に戻る', game_game_apis_path(game_id: @game.id), class: 'btn waves-effect waves-light' %>
   </div>
 </div>
-<%= link_to 'Edit', edit_game_game_api_path(game_id: @game.id, id: @game_api.id) %> |
-<%= link_to 'API一覧に戻る', game_game_apis_path(game_id: @game.id) %>

@@ -1,3 +1,8 @@
-$(".result").append("<p>値名: <%= j(@response[:name]) %> </p>");
-$(".result").append("<p>送信値: <%= j(@response[:send_param]) %> </p>");
-$(".result").append("<p>レスポンス<%= j(@response[:response]) %> </p>");
+var newTag =
+        "<tr class='tr-new-results'> +" +
+            "<td><%= j(@response[:name]) %></td>" +
+            "<td><%= j(@response[:send_param]) %></td>" +
+            "<td><%= j(@response[:response]) %></td>" +
+        "</tr>";
+$(".current-result").prepend(newTag);
+$(".all-result").prepend(newTag);

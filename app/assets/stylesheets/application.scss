@@ -13,3 +13,9 @@
  *= require_tree .
  *= require_self
  */
+@import "materialize";
+
+
+.header {
+  @extend .blue-text, .text-lighten-3;
+}

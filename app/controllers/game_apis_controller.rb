@@ -1,6 +1,7 @@
 require 'net/http'
 require 'uri'
 require Rails.root.join('lib/random_strings.rb').to_s
+require Rails.root.join('lib/game_ai.rb').to_s
 class GameApisController < ApplicationController
   before_action :login
   before_action :set_game_api, only: [:show, :edit, :update, :destroy, :send_params]
@@ -16,6 +17,7 @@ class GameApisController < ApplicationController
   # GET /game_apis/1
   # GET /game_apis/1.json
   def show
+    @all_results = current_user.results.all.where(game_id: @game.id, game_api_id: @game_api.id)
   end
 
   # GET /game_apis/new
@@ -92,7 +94,8 @@ class GameApisController < ApplicationController
   end
 
   def execute_create_methods
-    @result = RandomStrings.random_value
+    # @result = RandomStrings.random_value
+    @result = GameAI.create_value
   end
 
   def add_param

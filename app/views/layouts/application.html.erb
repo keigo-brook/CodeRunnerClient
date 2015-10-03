@@ -2,13 +2,48 @@
 <html>
 <head>
   <title>CodeRunnerClient</title>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
+<nav>
+  <div class="nav-wrapper blue">
+    <%= link_to 'CodeRunnerClient', root_path, class: 'brand-logo center' %>
+    <ul id="nav-mobile" class="right hide-on-med-and-down">
+      <% if @user_id.present? %>
+      <li>
+        <%= link_to 'ユーザー設定', user_path(current_user.id) %>
+      </li>
+          <% end %>
+    </ul>
+  </div>
+</nav>
 
 <%= yield %>
 
+<footer class="page-footer blue">
+  <div class="container">
+    <div class="row">
+      <div class="col l6 s12">
+        <h5 class="white-text"></h5>
+        <p class="grey-text text-lighten-4">このサイトは<a href="https://coderunner.jp" class="grey-text text-lighten-4">CodeRunner</a>用のクライアントです。</p>
+      </div>
+      <div class="col l4 offset-l2 s12">
+        <h5 class="white-text">Links</h5>
+        <ul>
+          <li><%= link_to 'ゲーム一覧', games_path, class: 'grey-text text-lighten-5' %></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="footer-copyright">
+    <div class="container">
+      © 2015 brook_bach
+      <a class="grey-text text-lighten-4 right" href="https://github.com/keigo-brook">github</a>
+    </div>
+  </div>
+</footer>
 </body>
 </html>

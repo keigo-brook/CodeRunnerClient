@@ -1,25 +1,34 @@
-<p id="notice"><%= notice %></p>
+<div class="container">
+  <div class="row">
+    <p id="notice"><%= notice %></p>
 
-<h1>Listing Games</h1>
-<p>ゲームを選んでください</p>
-<table>
-  <thead>
-    <tr>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @games.each do |game| %>
+    <h2 class="header">ゲーム一覧</h2>
+    <p>ゲームを選んでください</p>
+    <table class="striped">
+      <thead>
       <tr>
-        <td><%= link_to game.name, game %></td>
-        <td><%= link_to 'Edit', edit_game_path(game) %></td>
-        <td><%= link_to 'Destroy', game, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <th>名前</th>
+        <th></th>
+        <th></th>
       </tr>
+      </thead>
+
+      <tbody>
+      <% @games.each do |game| %>
+          <tr>
+            <td><%= link_to game.name, game %></td>
+            <td style="width: 50px;"><%= link_to 'Edit', edit_game_path(game), class: 'btn waves-effect waves-light' %></td>
+            <td style="width: 50px;"><%= link_to 'Destroy', game, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn waves-effect waves-light' %></td>
+          </tr>
+      <% end %>
+      </tbody>
+    </table>
+
+    <br>
+
+    <%= link_to new_game_path, class: 'btn waves-effect waves-light' do%>
+        新しいゲームを作成
+        <i class="material-icons right">send</i>
     <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to '新しいゲームを作成', new_game_path %>
+  </div>
+</div>
