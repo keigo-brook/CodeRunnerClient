@@ -1,3 +1,4 @@
+<% if @response.present? %>
 var newTag =
         "<tr class='tr-new-results'> +" +
             "<td><%= j(@response[:name]) %></td>" +
@@ -6,3 +7,8 @@ var newTag =
         "</tr>";
 $(".current-result").prepend(newTag);
 $(".all-result").prepend(newTag);
+<% else %>
+$(".send-url").remove();
+var urlInfo = "<p class='send-url'><%= @send_url %><p>";
+$("#results").prepend(urlInfo);
+<% end %>

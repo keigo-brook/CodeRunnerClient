@@ -1,18 +1,13 @@
 class GameAI
   def self.create_value
     ans = ''
-    50.times do
-      case rand(4)
-        when 0
-          ans += 'A'
-        when 1
-          ans += 'B'
-        when 2
-          ans += 'C'
-        when 3
-          ans += 'D'
-      end
+    1.times do
+      ans += self.create_int.to_s + ',' + self.create_int.to_s
+      ans += ',' + self.create_int.to_s + ',' + self.create_int.to_s
     end
-    return [{name: 'str', value: ans}]
+    return [{name: 'v', value: ans}]
+  end
+  def self.create_int
+    return rand(1000)
   end
 end

@@ -11,13 +11,13 @@ class GameApisController < ApplicationController
   # GET /game_apis
   # GET /game_apis.json
   def index
-    @game_apis = GameApi.all
+    @game_apis = @game.game_apis.all
   end
 
   # GET /game_apis/1
   # GET /game_apis/1.json
   def show
-    @all_results = current_user.results.all.where(game_id: @game.id, game_api_id: @game_api.id)
+    @all_results = current_user.results.all.where(game_id: @game.id, game_api_id: @game_api.id).limit(5)
   end
 
   # GET /game_apis/new
@@ -72,11 +72,11 @@ class GameApisController < ApplicationController
 
   def send_params
     # @send_url = @game.base_url + @game_api.end_point + '?token=' + current_user.token
-    send_url = @game.base_url + @game_api.end_point + '?token=' + current_user.token
+    @send_url = @game.base_url + @game_api.end_point + '?token=' + current_user.token
     @game_api.parameters.each do |p|
       if params[p.param].present?
-        send_url += '&' + p.param + '=' + params[p.param]
-        response_text = Net::HTTP.get(URI.parse(URI.escape(send_url)))
+        @send_url += '&' + p.param + '=' + params[p.param]
+        response_text = Net::HTTP.get(URI.parse(URI.escape(@send_url)))
         @response = {name: p.param, send_param: params[p.param], response: response_text}
         unless @response[:response].include?('Error')
           result_params = {

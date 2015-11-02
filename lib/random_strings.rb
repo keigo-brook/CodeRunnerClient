@@ -1,18 +1,13 @@
 class RandomStrings
   def self.random_value
     ans = ''
-    50.times do
-      case rand(4)
-        when 0
-          ans += 'A'
-        when 1
-          ans += 'B'
-        when 2
-          ans += 'C'
-        when 3
-          ans += 'D'
-      end
+    40000.times do
+      ans += create_int + ',' + create_int
     end
-    return [{name: 'str', value: ans}]
+    return [{name: 'v', value: ans}]
+  end
+
+  def create_int
+    return rand(40000)
   end
 end

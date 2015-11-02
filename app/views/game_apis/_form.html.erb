@@ -18,7 +18,7 @@
   <span><%= @game.base_url %></span>
   <%= f.text_field :end_point %>
 </div>
-<h3>追加したいパラメータを以下に入力してください。<br>*Tokenパラメータは自動的に作成されるので入力する必要はありません。</h3>
+<h5>追加したいパラメータを以下に入力してください。<br>*Tokenパラメータは自動的に作成されるので入力する必要はありません。</h5>
 <%= link_to_add_association 'パラメータ追加', f, :parameters,
                             data: {
                                              association_insertion_node: '.parameter_fields',
