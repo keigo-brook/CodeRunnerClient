@@ -1,7 +1,7 @@
 $(document).on('click', '#send-per-second', function () {
     betweenTime = 1000 * parseFloat($("#between-time").val());
 
-    if (!isNaN(betweenTime)) {
+    if(!isNaN(betweenTime)) {
         timer1 = setInterval(function () {
             document.getElementById('execute-method').click();
             console.log(betweenTime);
