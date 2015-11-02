@@ -1,28 +1,29 @@
-                   Prefix Verb   URI Pattern                                         Controller#Action
-                     root GET    /                                                   games#index
-send_params_game_game_api POST   /games/:game_id/game_apis/:id/send_params(.:format) game_apis#send_params
- add_param_game_game_apis GET    /games/:game_id/game_apis/add_param(.:format)       game_apis#add_param
-           game_game_apis GET    /games/:game_id/game_apis(.:format)                 game_apis#index
-                          POST   /games/:game_id/game_apis(.:format)                 game_apis#create
-        new_game_game_api GET    /games/:game_id/game_apis/new(.:format)             game_apis#new
-       edit_game_game_api GET    /games/:game_id/game_apis/:id/edit(.:format)        game_apis#edit
-            game_game_api GET    /games/:game_id/game_apis/:id(.:format)             game_apis#show
-                          PATCH  /games/:game_id/game_apis/:id(.:format)             game_apis#update
-                          PUT    /games/:game_id/game_apis/:id(.:format)             game_apis#update
-                          DELETE /games/:game_id/game_apis/:id(.:format)             game_apis#destroy
-                    games GET    /games(.:format)                                    games#index
-                          POST   /games(.:format)                                    games#create
-                 new_game GET    /games/new(.:format)                                games#new
-                edit_game GET    /games/:id/edit(.:format)                           games#edit
-                     game GET    /games/:id(.:format)                                games#show
-                          PATCH  /games/:id(.:format)                                games#update
-                          PUT    /games/:id(.:format)                                games#update
-                          DELETE /games/:id(.:format)                                games#destroy
-                    users GET    /users(.:format)                                    users#index
-                          POST   /users(.:format)                                    users#create
-                 new_user GET    /users/new(.:format)                                users#new
-                edit_user GET    /users/:id/edit(.:format)                           users#edit
-                     user GET    /users/:id(.:format)                                users#show
-                          PATCH  /users/:id(.:format)                                users#update
-                          PUT    /users/:id(.:format)                                users#update
-                          DELETE /users/:id(.:format)                                users#destroy
+                               Prefix Verb   URI Pattern                                                Controller#Action
+                                 root GET    /                                                          games#index
+            send_params_game_game_api POST   /games/:game_id/game_apis/:id/send_params(.:format)        game_apis#send_params
+             add_param_game_game_apis GET    /games/:game_id/game_apis/add_param(.:format)              game_apis#add_param
+execute_create_methods_game_game_apis GET    /games/:game_id/game_apis/execute_create_methods(.:format) game_apis#execute_create_methods
+                       game_game_apis GET    /games/:game_id/game_apis(.:format)                        game_apis#index
+                                      POST   /games/:game_id/game_apis(.:format)                        game_apis#create
+                    new_game_game_api GET    /games/:game_id/game_apis/new(.:format)                    game_apis#new
+                   edit_game_game_api GET    /games/:game_id/game_apis/:id/edit(.:format)               game_apis#edit
+                        game_game_api GET    /games/:game_id/game_apis/:id(.:format)                    game_apis#show
+                                      PATCH  /games/:game_id/game_apis/:id(.:format)                    game_apis#update
+                                      PUT    /games/:game_id/game_apis/:id(.:format)                    game_apis#update
+                                      DELETE /games/:game_id/game_apis/:id(.:format)                    game_apis#destroy
+                                games GET    /games(.:format)                                           games#index
+                                      POST   /games(.:format)                                           games#create
+                             new_game GET    /games/new(.:format)                                       games#new
+                            edit_game GET    /games/:id/edit(.:format)                                  games#edit
+                                 game GET    /games/:id(.:format)                                       games#show
+                                      PATCH  /games/:id(.:format)                                       games#update
+                                      PUT    /games/:id(.:format)                                       games#update
+                                      DELETE /games/:id(.:format)                                       games#destroy
+                                users GET    /users(.:format)                                           users#index
+                                      POST   /users(.:format)                                           users#create
+                             new_user GET    /users/new(.:format)                                       users#new
+                            edit_user GET    /users/:id/edit(.:format)                                  users#edit
+                                 user GET    /users/:id(.:format)                                       users#show
+                                      PATCH  /users/:id(.:format)                                       users#update
+                                      PUT    /users/:id(.:format)                                       users#update
+                                      DELETE /users/:id(.:format)                                       users#destroy
